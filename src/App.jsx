@@ -1,46 +1,39 @@
 // src/App.jsx
 import { useState } from 'react';
-import Acordeon from './components/Acordeon';
-import Alerta from './components/Alerta';
-import BotonAccion from './components/BotonAccion';
-import Modal from './components/Modal';
-import Contador from './components/Contador';
-import ListaContactos from './components/ListaContactos';
-import FormularioEvento from './components/FormularioEvento';
+import VisorDocumento from './components/VisorDocumento';
+import TemporizadorPomodoro from './components/TemporizadorPomodoro';
+import ConfiguracionUsuario from './components/ConfiguracionUsuario';
+import PruebaHooks from './components/PruebaHooks';
 
 function App() {
-  const [modalAbierto, setModalAbierto] = useState(false);
+  const [mostrarVisor, setMostrarVisor] = useState(true);
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '20px' }}>
-      <h1>Laboratorio 3 - Props, Estado y Eventos</h1>
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+      <h1>Laboratorio 4 - Efectos y Custom Hooks</h1>
 
-      <Acordeon titulo="Ejercicio 1: Alerta y Acordeón" defaultExpandido={true}>
-        <Alerta tipo="exito" titulo="Éxito">Operación correcta</Alerta>
-        <Alerta tipo="advertencia" titulo="Advertencia">Revisa los datos</Alerta>
-        <Alerta tipo="error" titulo="Error">Ocurrió un problema</Alerta>
-        <Alerta tipo="info" titulo="Info">Mensaje informativo</Alerta>
-        <Acordeon titulo="Acordeón anidado">
-          <p>Contenido dentro de otro acordeón.</p>
-        </Acordeon>
-      </Acordeon>
+      <section>
+        <h2>Ejercicio 1: VisorDocumento (con desmontaje)</h2>
+        <button onClick={() => setMostrarVisor(!mostrarVisor)}>
+          {mostrarVisor ? 'Ocultar' : 'Mostrar'} VisorDocumento
+        </button>
+        {mostrarVisor && <VisorDocumento />}
+      </section>
 
-      <Acordeon titulo="Ejercicio 2: Modal, Botón y Contador">
-        <BotonAccion texto="Abrir Modal" onClick={() => setModalAbierto(true)} />
-        <Modal titulo="Ejemplo" abierto={modalAbierto}>
-          <p>Contenido del modal</p>
-          <BotonAccion texto="Cerrar" variante="secundario" onClick={() => setModalAbierto(false)} />
-        </Modal>
-        <Contador />
-      </Acordeon>
+      <section>
+        <h2>Ejercicio 2: Temporizador Pomodoro</h2>
+        <TemporizadorPomodoro />
+      </section>
 
-      <Acordeon titulo="Ejercicio 3: Lista de Contactos">
-        <ListaContactos />
-      </Acordeon>
+      <section>
+        <h2>Ejercicio 3: Configuración de Usuario (localStorage)</h2>
+        <ConfiguracionUsuario />
+      </section>
 
-      <Acordeon titulo="Ejercicio 4: Formulario de Evento">
-        <FormularioEvento />
-      </Acordeon>
+      <section>
+        <h2>Ejercicio 4: Custom Hooks (useLocalStorage + useNotification)</h2>
+        <PruebaHooks />
+      </section>
     </div>
   );
 }
