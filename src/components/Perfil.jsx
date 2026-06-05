@@ -2,7 +2,7 @@
 function Perfil() {
   // Definir variables
   const nombre = "Leonardo";
-  const profesion = "Desarrolladora Frontend";
+  const profesion = "Desarrollador Frontend-Backend";
   const experiencia = 5;
   const disponible = true; // cambia a false para probar
 

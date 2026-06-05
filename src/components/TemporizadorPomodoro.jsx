@@ -15,14 +15,22 @@ function TemporizadorPomodoro() {
 
   // Efecto para manejar el intervalo
   useEffect(() => {
-    if (activo && tiempo > 0) {
+    if (!activo) {
+      return () => clearInterval(intervaloRef.current);
+    }
+
+    if (tiempo > 0) {
       intervaloRef.current = setInterval(() => {
-        setTiempo(prev => prev - 1);
+        setTiempo(prev => {
+          if (prev <= 1) {
+            clearInterval(intervaloRef.current);
+            setActivo(false);
+            alert('¡Tiempo completado!');
+            return 0;
+          }
+          return prev - 1;
+        });
       }, 1000);
-    } else if (tiempo === 0) {
-      // Cuando llega a cero, detener y mostrar alerta
-      setActivo(false);
-      alert('¡Tiempo completado!');
     }
 
     // Limpieza: detener intervalo al desmontar o al cambiar dependencias

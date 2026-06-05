@@ -1,10 +1,10 @@
 // src/components/PruebaHooks.jsx
 import useLocalStorage from '../hooks/useLocalStorage';
-import useNotification from '../hooks/useNotification';
+import useNotificacion from '../hooks/useNotificacion';
 
 function PruebaHooks() {
   const [nombre, setNombre] = useLocalStorage('nombre', '');
-  const { notificacion, mostrar, cerrar } = useNotification(2000);
+  const { notificacion, mostrar, cerrar } = useNotificacion(2000);
 
   const handleGuardar = () => {
     mostrar(`Nombre guardado: ${nombre}`, 'exito');
